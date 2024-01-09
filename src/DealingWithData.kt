@@ -12,55 +12,55 @@ fun main(args: Array<String>) {
 
     // these 2 hashCodes has the same value because they have the same values
     println("r1 hash code: ${r1.hashCode()}")
-    println("r1 hash code: ${r2.hashCode()}")
+    println("r2 hash code: ${r2.hashCode()}")
 
     // This show a distinct hashCode because title was changed
-    println("r1 hash code: ${r3.hashCode()}")
+    println("r3 (copy of r1) hash code: ${r3.hashCode()}")
 
     // This show contain as text
     println("r1 to String: ${r1.toString()}")
 
-    // TRUE, porque son objetos que tienen el mismo contenido en sus propiedades
+    // TRUE, because 2 objects has the same values into attributes
     println("r1 == r2? ${r1 == r2}")
 
-    // FALSE, porque === valida si son el mismo objeto, en este caso son distintos
+    // FALSE, because 2 objects are different instances of the same object
     println("r1 === r2? ${r1 === r2}")
 
-    // FALSE, porque cambiamos el title al crear r3 por copy()
+    // FALSE, because title was changed when r1 was copying from r3
     println("r1 == r3? ${r1 == r3}")
 
-    /* Destructurando un objeto. (Solo para DATA CLASS)
-    *  Podemos sacar en variables los valores de las propiedades de un objeto;
-    *  se destructura en el orden en el que sus propiedades esten en el constructor
-    *  de su DATA CLASS.
+    /* Destructuring an object (Only for DATA CLASSES)
+    *  It can destructure attribute by attribute in the same order that attributes are
+    * declared in its constructor
     *  */
     val (titulo, ingredientePrincipal, esVegetariano, dificultad) = r1
-    // Es lo mismo a...
+    // The same that ...
     // val titulo = r1.title
     // val esVegetariano = r1.isVegetarian ...
     println("title is $titulo and vegetarian is $esVegetariano")
 
-    // Destructurando un array<Object> con for
+    // Destructuring an array<Object> using for
     val recipes = arrayOf(r1, r2 ,r3)
-    // Destructuracion en orden, por las propiedades del objeto
-    for ((titulo, principalIngredient) in recipes) println("title: $titulo ingrediente: $principalIngredient")
+    // Destructuring Object attributes in the same constructor order
+    for ((titulo, principalIngredient) in recipes)
+        println("title: $titulo ingrediente: $principalIngredient")
 
-    // Creamos tres variables con referencia al mismo Objeto
+    // Create 3 variables that refer to the same object
     val r5 = Recipe("Sushi", "Fish")
     val r6 = r5
     val r7 = r6
-    // True, porque hacen referencia al mismo objeto
+    // True, because r5 and r7 refer the same object
     if (r5 === r7) println("Same Object's references") else println("Different Objects")
 
-    // Creamos un objeto de Mushroom utilizando su constructor principal con dos argumentos
+    // Create a Mushroom by using constructor with 2 args
     val m1 = Mushroom(6, false)
     println("m1 size is ${m1.size} and is magic is ${m1.isMagic}")
 
-    // Creamos un objeto de Mushroom utilizando su constructor secundario con un argumento
+    // Create a Mushroom by using secondary constructor with 1 arg
     val m2 = Mushroom(true)
     println("m2 size is ${m2.size} and is magic is ${m2.isMagic}")
 
-    // Sobrecarga de funciones
+    // Functions Overload
     // Utilizamos la misma funcion addNumbers() con sobrecarga
     // Una se invoca segun le inviemos enteros
     println("sumando con addNumbers(enteros) ${addNumbers(2,5)}")
