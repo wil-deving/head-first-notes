@@ -61,21 +61,21 @@ fun main(args: Array<String>) {
     println("m2 size is ${m2.size} and is magic is ${m2.isMagic}")
 
     // Functions Overload
-    // Utilizamos la misma funcion addNumbers() con sobrecarga
-    // Una se invoca segun le inviemos enteros
+    // calling overload function addNumbers()
+    // Call sending integers
     println("sumando con addNumbers(enteros) ${addNumbers(2,5)}")
-    // Esta se invoca cuando le enviamos doubles
+    // Call sending doubles
     println("sumando con addNumbers(decimales) ${addNumbers(1.6,7.3)}")
 
 }
 
 /*
-* Estos modelos de classes se utiliza para objetos de informacion,
-* Solo pueden ser tomados como Superclases
-* No pueden ser Abstract u Open
-* Pueden implementar funciones de interfaces
+* These type of classes are used for DTOs or to store information
+* They can not be superclasses
+* They can not be Abstract u Open
+* They can implement functions from interfaces
 *
-* isVegetarian y difficulty tienen valores por defecto
+* isVegetarian y difficulty have default values
 * */
 data class Recipe(val title: String,
                   val mainIngredient: String,
@@ -83,21 +83,23 @@ data class Recipe(val title: String,
                   val difficulty: String = "Easy")
 
 /*
-* size tiene el valor por defecto de 1
+* size has default value = 1
 *  */
 class Mushroom(val size: Int = 1, val isMagic: Boolean) {
 
-    // Cuando utilizamos el constructor secundario N
-    // Recibimos un parametro bool
-    /* Sobrecargamos el constructor utilizando THIS para invocar size del
-    *  constructor principal y darle el valor de 0
-    */
+    /**
+     * constructors overloading
+     * main constructor receives two parameters
+     * secondary constructor receives one parameter
+     * secondary constructor calls main constructor sending size = 0 and
+     * its received parameter, that is to say, two parameters
+     */
     constructor(isMagic_param: Boolean) : this(0, isMagic_param) {
 
     }
 }
 
-// Creamos una funcion con valores por defecto en sus parametros
+// Create a function with parameters that have default values
 fun findRecipes(title: String = "",
                 ingredient: String = "",
                 isVegetarian: Boolean = false,
@@ -105,13 +107,12 @@ fun findRecipes(title: String = "",
     return arrayOf(Recipe(title, ingredient, isVegetarian, difficulty))
 }
 
-/*
-* Puede existir sobrecarga de funciones, se invocaran segun le enviamos sus parametros:
-* por numero de parametros
-* por tipo de parametros
-*
-* NO se puede sobrecargar una funcion dandole el mismo numero de parametros y del mismo tipo
-* */
+
+/**
+ * There may be overload of functions when each function declaration:
+ * has different quantity of parameters
+ * has the same number of parameters but different type of parameters
+ */
 fun addNumbers(a: Int, b: Int) : Int {
     return a + b
 }
